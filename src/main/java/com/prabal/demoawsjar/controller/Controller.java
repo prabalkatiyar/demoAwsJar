@@ -18,7 +18,7 @@ public class Controller {
 
     public static final Logger log = LogManager.getLogger(Controller.class);
 
-    @GetMapping("/getMethod")
+    @GetMapping("/getMethodJar")
     public MobiToPosResponseDto getMethod() {
         MobiToPosResponseDto response = new MobiToPosResponseDto();
         ApiResponseData res = new ApiResponseData();
@@ -27,9 +27,9 @@ public class Controller {
             response.setApiResponseCode("200");
             response.setApiResponseMessage("success");
 
-            log.info("Inside getMethod Controller");
-//            log.info("Project has deployed on AWS"+ReadProperties.getPropertyData("message"));
-            log.info("Project has deployed on AWS");
+            log.info("Inside getMethodJar Controller");
+            log.info("Project has deployed on AWS "+ReadProperties.getPropertyData("message"));
+//            log.info("Project has deployed on AWS");
 
             response.getApiResponseData().setResponseCode("200");
             response.getApiResponseData().setResponseMessage("success");
@@ -45,11 +45,12 @@ public class Controller {
             response.getApiResponseData().setResponseData(e.toString());
         }
         response.setApiResponseDateTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-        response.setApiResponseFrom("DEMO AWS");
+        response.setApiResponseFrom("DEMO AWS JAR");
+        log.info("Response from Get API :- {} ",response.toString());
         return response;
     }
 
-    @PostMapping("/postMethod")
+    @PostMapping("/postMethodJar")
     public MobiToPosResponseDto postMethod(@RequestBody String request) {
         MobiToPosResponseDto response = new MobiToPosResponseDto();
         ApiResponseData res = new ApiResponseData();
@@ -58,7 +59,8 @@ public class Controller {
             response.setApiResponseCode("200");
             response.setApiResponseMessage("success");
 
-            log.info("Inside postMethod Controller");
+            log.info("Inside postMethodJar Controller");
+            log.info("Project has deployed on AWS "+ReadProperties.getPropertyData("message"));
             log.info(request);
 
             response.getApiResponseData().setResponseCode("200");
@@ -75,9 +77,8 @@ public class Controller {
             response.getApiResponseData().setResponseData(e.toString());
         }
         response.setApiResponseDateTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-        response.setApiResponseFrom("DEMO AWS"+ReadProperties.getPropertyData("message"));
-//        response.setApiResponseFrom("DEMO AWS");
-
+        response.setApiResponseFrom("DEMO AWS JAR");
+        log.info("Response from Post API :- {} ",response.toString());
         return response;
     }
 }
