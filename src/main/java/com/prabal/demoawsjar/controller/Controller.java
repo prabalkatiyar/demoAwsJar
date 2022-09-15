@@ -3,8 +3,9 @@ package com.prabal.demoawsjar.controller;
 import com.prabal.demoawsjar.responsemodel.ApiResponseData;
 import com.prabal.demoawsjar.responsemodel.MobiToPosResponseDto;
 import com.rapipay.conf.appprop.ReadProperties;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Slf4j
 @RestController
 public class Controller {
 
-    public static final Logger log = LogManager.getLogger(Controller.class);
+//    public static final Logger log = LogManager.getLogger(Controller.class);
 
     @Value("${message}")
     public String message="";
@@ -33,12 +35,10 @@ public class Controller {
 
             log.info("Inside getMethodJar Controller");
             log.info("Project has deployed on AWS "+message);
-//            log.info("Project has deployed on AWS");
 
             response.getApiResponseData().setResponseCode("200");
             response.getApiResponseData().setResponseMessage("success");
             response.getApiResponseData().setResponseData("Project has deployed on AWS "+ message);
-//            response.getApiResponseData().setResponseData("Project has deployed on AWS ");
 
         } catch (Exception e) {
             log.error("Exception occured in getMethod Controller");
@@ -70,7 +70,6 @@ public class Controller {
             response.getApiResponseData().setResponseCode("200");
             response.getApiResponseData().setResponseMessage("success");
             response.getApiResponseData().setResponseData(request+message);
-//            response.getApiResponseData().setResponseData(request);
 
         } catch (Exception e) {
             log.error("Exception occured in geMethod Controller");
