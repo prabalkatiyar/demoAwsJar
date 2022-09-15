@@ -5,6 +5,7 @@ import com.prabal.demoawsjar.responsemodel.MobiToPosResponseDto;
 import com.rapipay.conf.appprop.ReadProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,9 @@ public class Controller {
 
     public static final Logger log = LogManager.getLogger(Controller.class);
 
+    @Value("${message}")
+    public String message="";
+//    public String message=ReadProperties.getPropertyData("message");
     @GetMapping("/getMethodJar")
     public MobiToPosResponseDto getMethod() {
         MobiToPosResponseDto response = new MobiToPosResponseDto();
@@ -28,12 +32,12 @@ public class Controller {
             response.setApiResponseMessage("success");
 
             log.info("Inside getMethodJar Controller");
-            log.info("Project has deployed on AWS "+ReadProperties.getPropertyData("message"));
+            log.info("Project has deployed on AWS "+message);
 //            log.info("Project has deployed on AWS");
 
             response.getApiResponseData().setResponseCode("200");
             response.getApiResponseData().setResponseMessage("success");
-            response.getApiResponseData().setResponseData("Project has deployed on AWS "+ ReadProperties.getPropertyData("message"));
+            response.getApiResponseData().setResponseData("Project has deployed on AWS "+ message);
 //            response.getApiResponseData().setResponseData("Project has deployed on AWS ");
 
         } catch (Exception e) {
@@ -45,7 +49,7 @@ public class Controller {
             response.getApiResponseData().setResponseData(e.toString());
         }
         response.setApiResponseDateTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-        response.setApiResponseFrom("DEMO AWS JAR");
+        response.setApiResponseFrom("DEMO AWS "+message);
         log.info("Response from Get API :- {} ",response.toString());
         return response;
     }
@@ -60,12 +64,12 @@ public class Controller {
             response.setApiResponseMessage("success");
 
             log.info("Inside postMethodJar Controller");
-            log.info("Project has deployed on AWS "+ReadProperties.getPropertyData("message"));
+            log.info("Project has deployed on AWS "+message);
             log.info(request);
 
             response.getApiResponseData().setResponseCode("200");
             response.getApiResponseData().setResponseMessage("success");
-            response.getApiResponseData().setResponseData(request+ReadProperties.getPropertyData("message"));
+            response.getApiResponseData().setResponseData(request+message);
 //            response.getApiResponseData().setResponseData(request);
 
         } catch (Exception e) {
@@ -77,7 +81,7 @@ public class Controller {
             response.getApiResponseData().setResponseData(e.toString());
         }
         response.setApiResponseDateTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-        response.setApiResponseFrom("DEMO AWS JAR");
+        response.setApiResponseFrom("DEMO AWS "+message);
         log.info("Response from Post API :- {} ",response.toString());
         return response;
     }
