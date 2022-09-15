@@ -5,4 +5,4 @@ ADD target/demoawsjar.jar demoawsjar.jar
 COPY /target/demoawsjar.jar demoawsjar.jar
 COPY configDetails.xml /etc/wadConfig/configDetails.xml
 COPY /target/classes/application.properties application.properties
-ENTRYPOINT ["java","-jar","demoawsjar.jar"]
+ENTRYPOINT ["java","-jar","demoawsjar.jar --spring.profiles.active=uat"]
